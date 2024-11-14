@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalos | Principal</title>
+    <link rel="icon" href="{% static 'Dalos_app/img/logo.png' %}" type="image/jpg"> <!-- Agregamos el logo como icono de la página -->
+    <link rel="stylesheet" href='{% static "Dalos_app/css/principal.css" %}'>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <a href="{% url 'index' %}"><img src='{% static "Dalos_app/img/logo.png" %}' alt="Logo" class="logo"></a>
+            </div>
+            <ul>
+                <li><a href="#">Funcionalidades</a></li>
+                <li><a href="#">Ayuda y seguridad</a></li>
+                <li><a href="/Dalos/nosotros/">Sobre Dalos</a></li>
+                <li><a href="{% url 'logout' %}" class="logout-btn">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="tarjeta">
+            <div class="profile-card">
+                <div class="profile-info">
+                    <img src='{% static "Dalos_app/img/usuario.jpg" %}' alt="User Avatar" class="profile-img">
+                    <div>
+                        <!-- Usar las variables de contexto aquí -->
+                        <p class="name">Nombre: <span class="name-user">{{ nombre }} {{ apellido }}</span></p>
+                        <p class="alias">Alias: <span class="alias-user">{{ nombre_usuario }}</span></p>
+
+                    </div>
+                </div>
+                <div class="balance-info">
+                    <!-- Mostrar el monto del usuario aquí -->
+                    <span class="balance">${{ monto|floatformat:2 }}</span>
+                    <button class="refresh-btn">
+                        <img src='{% static "Dalos_app/img/logo.png" %}' alt="Refresh">
+                    </button>
+                </div>
+            </div>
+            <div class="actions-grid">
+                <button class="action-btn add-funds">
+                    <img src='{% static "Dalos_app/img/logo.png" %}' alt="Add Funds">
+                    <span>Ingresar</span>
+                </button>
+                <button class="action-btn withdraw-funds">
+                    <img src='{% static "Dalos_app/img/logo.png" %}' alt="Withdraw Funds">
+                    <span>Retirar</span>
+                <button class="action-btn transfer-funds">
+                    <a href="{% url 'transferencia' %}">
+                        <img src='{% static "Dalos_app/img/logo.png" %}' alt="Transfer Funds">
+                        <span>Transferir</span>
+                    </a>
+                </button>
+            </div>
+        </main>
+
+        <div class="header-container">
+            <h1>Con Dalos es más fácil</h1>
+            <p>Maneja tu plata con simplicidad y sin tanta vuelta.</p>
+        </div>
+    </div>
+
+    <!-- Nueva sección agregada -->
+    <section class="additional-section">
+        <div class="container">
+            <img src='{% static "Dalos_app/img/Logo_fondo.jpg" %}' alt="Imagen 1">
+            <div class="text-content">
+                <h2>¡El futuro de Dalos!</h2>
+                <p>Nuestro camino todavía no termina, estas serán algunas funciones que pronto agregaremos a Dalos, para que todos nuestros usuarios disfruten!</p>
+                    <div>
+                        <ul class="future-list">
+                            <li> | Personalización de Alias! </li>
+                            <li> | Funciones completas de Transferencia, Salida y Entrada de dinero.</li>
+                            <li> | Tarjeta de DALOS!</li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Messi-->
+    <section class="additional-section">
+        <div class="container">
+            <img src='{% static "Dalos_app/img/MessiXDalos.jpg" %}' alt="Imagen 1">
+            <div class="text-content">
+                <h2>¡<span class="messi">Leo Messi</span> x Dalos!</h2>
+                <p>¿No te habías enterado? El mismo capitán de la selección tiene su contrato con Dalos!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Otra sección adicional -->
+    <section class="additional-section">
+        <div class="container">
+            <img src='{% static "Dalos_app/img/dandadan.jpeg" %}' alt="Imagen 3">
+            <div class="text-content">
+                <h2>DanDaDan Anime</h2>
+                <p>vean Dandadan, está de 10.</p>
+        
+            </div>
+        </div>
+    </section>
+
+    <p></p>
+    <p></p>
+
+    <footer>
+        <p>&copy; 2024 Página de Dalos. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

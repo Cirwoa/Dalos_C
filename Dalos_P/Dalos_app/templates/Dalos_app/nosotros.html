@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Dalos - Billetera Virtual</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'Dalos_app/css/index.css' %}">
+  <link rel="icon" href="{% static 'Dalos_app/img/logo.png' %}" type="image/jpg">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="#" class="logo">Dalos</a>
+      
+      <div class="nav-container">
+        <nav>
+          <ul>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="{% url 'nosotros' %}">Sobre Dalos</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="user-actions">
+        <a href="{% url 'login' %}" class="btn-iniciar-sesion">Iniciar sesión</a>
+        <a href="{% url 'register' %}" class="btn-iniciar-sesion">Crear cuenta</a>
+      </div>
+    </header>
+
+    <div class="about-container">
+      <br>
+      <br>
+      <h1>Sobre Dalos</h1>
+      <p>En Dalos, nuestra misión es proporcionar una billetera virtual que sea fácil de usar y segura para todos. Creemos que la gestión de tus finanzas debería ser una experiencia sencilla y accesible para todos, debido a eso, nuestro equipo se ocupa constantemente de innovar el sistema para que sea intuitivo y facil de usar para jovenes, adultos y mayores.</p>
+      <br>
+
+      <h2>Nuestra Misión</h2>
+      <p>Facilitar la gestión financiera a través de tecnología innovadora y un enfoque centrado en el usuario.</p>
+      <br>
+
+      <h2>Nuestra Visión</h2>
+      <p>Ser la billetera virtual líder en el mercado, reconocida por su seguridad, facilidad de uso y atención al cliente excepcional.</p>
+      <br>
+     
+      <h2>Valores</h2>
+      <ul>
+        <li>Integridad: Actuamos con honestidad y transparencia en todas nuestras interacciones.</li>
+        <li>Innovación: Buscamos constantemente nuevas formas de mejorar nuestros servicios.</li>
+        <li>Compromiso: Estamos dedicados a satisfacer las necesidades de nuestros usuarios.</li>
+        <li>Seguridad: Priorizamos la protección de la información y los fondos de nuestros clientes.</li>
+      </ul>
+      
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <div class="team-section">
+        <h2>Conoce a Nuestro Equipo</h2>
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo/ciro.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Ciro Scriffignano Bastos</h3>
+          <p>Rol: Programador / Diseñador gráfico. </p>
+        </div>
+      
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo/gonza.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Gonzalo Alarcón</h3>
+          <p>Rol: Programador / Publicitador. </p>
+        </div>
+        
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo/ale.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Alejandro Figueroa</h3>
+          <p>Rol: Programador Frontend. </p>
+        </div>
+        
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo/tevez.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Tevez Jules</h3>
+          <p>Rol: Programador Backend. </p>
+        </div>
+        
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo2.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Tomás Faro</h3>
+          <p>Rol: Programador BDD. </p>
+        </div>
+            
+        <br>
+      
+        <div class="team-member">
+          <img src="{% static 'Dalos_app/img/equipo2.jpg' %}" alt="Miembro del equipo" class="team-image">
+          <h3>Francisco Spadea</h3>
+          <p>Rol: Programador BDD. </p>
+        </div>
+      </div>
+
+
+      </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h3>Para Vos</h3>
+            <p>Cuenta Digital</p>
+            <p>Rendimientos</p>
+            <p>Transferencias</p>
+            <p>Tarjeta Prepaga Mastercard</p>
+            <p>Retiro de Efectivo</p>
+            <p>Pago de Servicios y Recargas</p>
+            <p>Cuenta +13 Años</p>
+            <p>Mercado Crédito</p>
+            <p>Seguros y Garantías</p>
+          </div>
+          <div class="footer-column">

@@ -1,0 +1,573 @@
+/* Estilo global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}/* Estilos generales para el header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 5px solid rgb(242, 240, 247); /* Borde inferior */
+    background-color: rgba(29, 9, 139, 0.8); /* Fondo semi-transparente */
+    padding: 30px 5%; /* Padding aumentado */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del header */
+    font-size: 1.2rem; /* Tamaño de fuente general */
+}
+
+/* Estilos para el título dentro del header */
+.header-title {
+    font-size: 2rem; /* Tamaño del título */
+    font-weight: bold;
+    color: white; /* Color del texto del título */
+    text-decoration: none;
+}
+/* Estilos para el logo dentro del header */
+header .logo {
+    font-size: 2rem; /* Tamaño del logo */
+    font-weight: bold;
+    color: white; /* Color del texto del logo */
+    text-decoration: none; /* Elimina subrayado */
+}
+
+/* Estilos para el contenedor de navegación centrado */
+.nav-container {
+    flex: 1; /* Permite que el contenedor de navegación ocupe el espacio disponible */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el menú de navegación */
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    list-style: none; /* Elimina viñetas de la lista */
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 20px; /* Espaciado horizontal entre los elementos del menú */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Tamaño de fuente del menú */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el cursor */
+}
+
+
+
+/* Estilos para los botones de usuario alineados a la derecha */
+.user-actions {
+    display: flex;
+}
+
+.user-actions a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Tamaño de fuente de los botones */
+    margin-left: 15px; /* Espaciado horizontal entre los botones */
+    padding: 12px 25px; /* Padding para botones más grandes */
+    border: 2px solid rgb(185, 185, 185); /* Borde para los botones */
+    border-radius: 5px;
+    background-color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.user-actions a:hover {
+    background-color: #333;
+    color: white;
+}
+
+.user-actions a:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+    header {
+        padding: 25px 2%; /* Ajusta el padding para pantallas medianas */
+    }
+
+    nav ul li {
+        margin: 0 15px; /* Reduce el espaciado horizontal para pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        padding: 15px 2%; /* Ajusta el padding para pantallas pequeñas */
+    }
+
+    .nav-container {
+        margin-top: 10px; /* Espaciado entre el título y la navegación en pantallas pequeñas */
+    }
+
+    .user-actions {
+        margin-top: 10px; /* Espaciado entre la navegación y los botones de usuario */
+    }
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 97px; /* Espacio para el encabezado fijo */
+}
+
+
+  .overlay-text {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 20px;
+    box-sizing: border-box;
+    pointer-events: none;
+    background: none;
+    z-index: 20;
+    max-width: 40%;
+    text-align: center;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out; /* Añadido para animación */
+    opacity: 0; /* Inicialmente oculto */
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .overlay-text {
+      top: 20%; /* Ajusta la posición vertical en pantallas pequeñas */
+      left: 45%;
+      right: auto;
+      transform: translate(-50%, -50%);
+      max-width: 80%;
+      font-size: 1.5rem; /* Ajusta el tamaño de la fuente en pantallas pequeñas */
+    }
+  }
+  
+
+.overlay-text.visible {
+    opacity: 1; /* Hacer visible cuando esté en vista */
+    transform: translateY(-50%) translateY(0); /* Mover el texto desde abajo */
+}
+
+/* Estilo para el h2 dentro de overlay-text */
+.overlay-text h2 {
+    color: rgb(255, 255, 255); /* Color blanco para el texto */
+    margin: 0; /* Elimina márgenes predeterminados */
+    padding: 0; /* Elimina relleno predeterminado */
+    font-family: "Proxima Nova", sans-serif; /* Cambia la tipografía a Proxima Nova */
+    font-size: 3rem; /* Ajusta el tamaño del texto según sea necesario */
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.7), 
+        -1px -1px 2px rgba(0, 0, 0, 0.7), 
+        1px -1px 2px rgba(0, 0, 0, 0.7), 
+        -1px 1px 2px rgba(0, 0, 0, 0.7);
+    word-wrap: break-word; /* Ajusta el texto para que se envuelva en lugar de estirarse */
+}
+
+.content {
+    display: flex;
+    flex-direction: column; /* Alinea los divs en una columna vertical */
+    align-items: center; /* Centra los divs horizontalmente */
+    text-align: center;
+    color: black;
+    padding: 20px;
+    opacity: 0; /* Hace el contenido invisible */
+}
+
+.scroll-content {
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+    height: 300px; /* Altura fija */
+    margin-bottom: 100px; /* Espacio entre los divs */
+    box-sizing: border-box;
+    opacity: 0; /* Hace el contenido invisible */
+}
+
+
+/* Estilos generales para la primera caja */
+.info-box {
+    position: absolute;
+    bottom: -25%;
+    left: 30%;
+    transform: translateX(-50%);
+    width: 600px;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    min-height: 300px;
+    border-radius: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('../imagenes/your-background-image.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.info-box .info-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.info-box .info-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.info-box .info-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.info-box .info-description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.info-box .info-button {
+    margin-top: auto;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(51, 51, 51, 0.8);
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px solid rgb(185, 185, 185);
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.info-box .info-button:hover {
+    background-color: #333;
+    color: rgb(156, 154, 154);
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 1024px) {
+    .info-box {
+        width: 90%; /* Ajusta el ancho al 90% de la pantalla */
+        left: 50%; /* Centra horizontalmente */
+        transform: translateX(-50%);
+        bottom: auto; /* No usar 'bottom' para las pantallas pequeñas */
+        top: 60%; /* Aumenta el margen superior */
+        margin-top: 30px; /* Margen adicional para separar de la parte superior */
+    }
+
+    .info-box .info-image,
+    .info-box .info-text {
+        width: 100%; /* Las imágenes y el texto ocupan el 100% del contenedor */
+    }
+
+    .info-box .info-title,
+    .info-box .info-description,
+    .info-box .info-button {
+        font-size: 1.5rem; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Estilos generales para la segunda caja */
+.info-box-second {
+    position: absolute;
+    bottom: -25%;
+    left: 65%;
+    transform: translateX(-50%);
+    width: 600px;
+    background: rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    min-height: 300px;
+    border-radius: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('../imagenes/your-background-image.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.info-box-second .info-image {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.info-box-second .info-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.info-box-second .info-title {
+    font-size: 2.3rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.info-box-second .info-description {
+    font-size: 1.4rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.info-box-second .info-button {
+    margin-top: auto;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(51, 51, 51, 0.8);
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px solid rgb(185, 185, 185);
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.info-box-second .info-button:hover {
+    background-color: #333;
+    color: rgb(156, 154, 154);
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 1024px) {
+    .info-box-second {
+        width: 90%; /* Ajusta el ancho al 90% de la pantalla */
+        left: 50%; /* Centra horizontalmente */
+        transform: translateX(-50%);
+        bottom: auto; /* No usar 'bottom' para las pantallas pequeñas */
+        top: 130%; /* Aumenta el margen superior */
+        margin-top: 30px; /* Margen adicional para separar de la parte superior */
+    }
+
+    .info-box-second .info-image,
+    .info-box-second .info-text {
+        width: 100%; /* Las imágenes y el texto ocupan el 100% del contenedor */
+    }
+
+    .info-box-second .info-title,
+    .info-box-second .info-description,
+    .info-box-second .info-button {
+        font-size: 1.5rem; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Estilo original para .contact-block */
+.contact-block {
+    position: absolute;
+    bottom: 40%; /* Ajusta según sea necesario */
+    left: 80%;
+    transform: translateX(-50%);
+    width: 500px; /* Ajusta el ancho total del bloque según sea necesario */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar el bloque */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: space-between; /* Espacia el contenido para que el botón esté a la derecha */
+}
+
+.contact-title {
+    position: absolute;
+    top: 46%; /* Ajusta la posición vertical según sea necesario */
+    left: 80%;
+    transform: translateX(-50%);
+    font-size: 3rem; /* Tamaño de fuente mayor */
+    color: white; /* Letras blancas */
+    padding: 5px 10px;
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center;
+    z-index: 10; /* Asegúrate de que esté por encima del bloque de contacto */
+    text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 0.7), 
+    -1px -1px 2px rgba(0, 0, 0, 0.7), 
+    1px -1px 2px rgba(0, 0, 0, 0.7), 
+    -1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.contact-block h3 {
+    margin: 0; /* Elimina el espaciado inferior del título */
+    font-size: 1.5rem; /* Tamaño del texto del título */
+    color: rgba(51, 51, 51, 0.8); /* Color del texto del título con opacidad */
+    text-align: center; /* Centra el título */
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Permite que el contenedor del campo de entrada ocupe todo el espacio disponible */
+    margin-right: 15px; /* Espaciado entre el campo de entrada y el botón */
+}
+
+.input-container img {
+    width: 35px; /* Ancho de la bandera */
+    height: auto;
+    margin-right: 10px; /* Espaciado entre la bandera y el campo de entrada */
+}
+
+.contact-block input {
+    width: 100%; /* Ancho completo del contenedor de entrada */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde de entrada */
+    border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.7); /* Fondo del campo de entrada con opacidad */
+}
+
+.contact-block button {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo del botón con opacidad */
+    color: rgba(51, 51, 51, 0.8); /* Color del texto del botón con opacidad */
+    border: 1px solid rgba(51, 51, 51, 0.3); /* Borde del botón con opacidad */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Espaciado entre el campo de entrada y el botón */
+}
+
+.contact-block button:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo del botón con opacidad en hover */
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 1024px) {
+    .contact-block {
+        position: absolute;
+        top: 40%; /* Mueve el bloque hacia arriba */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Ajusta el ancho al 90% de la pantalla */
+        margin: 0 auto; /* Centra horizontalmente */
+        bottom: auto; /* Reinicia la posición inferior */
+    }
+
+    .contact-title {
+        position: absolute;
+        top: 35%; /* Ajusta la posición vertical del título */
+        left: 40%;
+        transform: translateX(-50%);
+        font-size: 2rem; /* Tamaño de fuente del título */
+    }
+
+    .input-container {
+        margin-right: 5px; /* Reduce el margen para pantallas pequeñas */
+    }
+
+    .contact-block input {
+        padding: 5px; /* Reduce el padding del campo de entrada */
+    }
+
+    .contact-block button {
+        padding: 5px 10px; /* Reduce el padding del botón */
+    }
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #f4f4f4; /* Fondo gris claro */
+    padding: 40px 5%;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic; /* Letra en cursiva */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.footer-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.footer-column:last-child {
+    margin-right: 0;
+}
+
+.footer-column h3 {
+    font-size: 2rem;
+    color: #003366; /* Color celeste oscuro */
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.footer-info {
+    text-align: center;
+}
+
+.footer-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #666;
+}
+
+.footer-info a {
+    color: #003366; /* Color celeste oscuro */
+    text-decoration: underline;
+}
+
+.footer-info a:hover {
+    color: #007bff; /* Color celeste brillante */
+}

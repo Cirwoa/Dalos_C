@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dalos - Billetera Virtual</title>
+  <link rel="stylesheet" href="{% static 'Dalos_app/css/index.css' %}">
+  <link rel="icon" href="{% static 'Dalos_app/img/logo.png' %}" type="image/jpg"> <!-- Agregamos el logo como icono de la página -->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="#" class="logo">Dalos</a> <!-- Logo alineado a la izquierda -->
+      
+      <div class="nav-container"> <!-- Contenedor para la navegación centrada -->
+        <nav>
+          <ul>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="{% url 'nosotros' %}">Sobre Dalos</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="user-actions"> <!-- Contenedor para los botones de usuario a la derecha -->
+        <a href="{% url 'login' %}" class="btn-iniciar-sesion">Iniciar sesión</a>
+        <a href="{% url 'register' %}" class="btn-iniciar-sesion">Crear cuenta</a>
+      </div>
+    </header>
+    
+    <div class="image-container">
+      <div class="overlay-text visible">
+        <h2>Gestiona tu dinero de forma más fácil y segura</h2>
+      </div>
+      
+      <div class="info-box">
+        <img src='{% static "Dalos_app/img/segunda_wallet.jpg" %}' alt="Descripción de la imagen" class="info-image">
+        <div class="info-text">
+          <div class="info-title">Seguridad Avanzada</div>
+          <div class="info-description">Dalos utiliza encriptación de última generación y autenticación multifactor para proteger tu dinero. Con medidas de seguridad robustas, tus transacciones y datos están siempre a salvo.</div>
+          <a href="https://example.com" class="info-button">Visitar</a>
+        </div>
+      </div>  
+
+      <style> 
+        .image-fade {
+          opacity: 0; /* Cambia la opacidad a 0 para desvanecer la imagen */
+      }
+      .image-container {
+          position: relative;
+          height: 70vh; /* 70% de la altura del viewport */
+          background: url("{% static 'Dalos_app/img/fon_index.jpg' %}") no-repeat center center;
+          background-size: cover;
+          transition: opacity 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Transición suave para la opacidad y color de fondo */
+          padding: 40px; /* Agrega padding de 40px */
+          box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total del contenedor */
+          top: 20px;
+      }
+      .image-container.faded {
+        opacity: 0.3; /* Reduce la opacidad de la imagen */
+        background-color: rgba(255, 255, 255, 0.5); /* Agrega un color de fondo blanco semitransparente */
+    }
+    
+    .image-fade {
+        opacity: 0; /* Cambia la opacidad a 0 para desvanecer la imagen */
+    }
+      </style>
+
+      <div class="info-box info-box-second">
+        <img src='{% static "Dalos_app/img/telefono.jpg" %}' alt="Imagen de la billetera" class="info-image">
+        <div class="info-text">
+          <h2 class="info-title">Uso Sencillo</h2>
+          <p class="info-description">Gestiona tus finanzas de manera rápida y fácil con Dalos. Su interfaz intuitiva te permite realizar transacciones y controlar tus gastos sin complicaciones.</p>
+          <a href="#" class="info-button">Descubre más</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-title">Para Contactarnos</div>
+
+    <div class="contact-block">
+      <div class="input-container">
+        <img src='{% static "Dalos_app/img/b_arg.png" %}' alt="Bandera Argentina">
+        <input type="text" placeholder="Ingresa tu número para contactarnos">
+      </div>
+      <button>Enviar SMS</button>
+    </div>
+
+    <div class="content">
+      <div class="scroll-content" style="background-color: #f8f9fa;"></div>
+      <div class="scroll-content" style="background-color: #e9ecef;"></div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h3>Para Vos</h3>
+            <p>Cuenta Digital</p>
+            <p>Rendimientos</p>
+            <p>Transferencias</p>
+            <p>Tarjeta Prepaga Mastercard</p>
+            <p>Retiro de Efectivo</p>
+            <p>Pago de Servicios y Recargas</p>
+            <p>Cuenta +13 Años</p>
+            <p>Mercado Crédito</p>
+            <p>Seguros y Garantías</p>
+          </div>
+          <div class="footer-column">
+            <h3>Para Tu Negocio</h3>
+            <p>Ventas con Point</p>
+            <p>Ventas con Código QR</p>
+            <p>Ventas con Link de Pago</p>
+            <p>Ventas en un Sitio Web</p>
+            <p>Planes de Suscripción</p>
+            <p>Tienda Online para Vender</p>
+            <p>Créditos para Vendedores</p>
+            <p>Revendedores Point</p>
+            <p>Developers</p>
+          </div>
+          <div class="footer-column">
+            <h3>Acerca de</h3>
+            <p>Ayuda</p>
+            <p>Términos y Políticas</p>
+            <p>Blog</p>
+            <p>Investor Relations</p>
+            <p>Cómo Usar Tu Cuenta de Forma Segura</p>
+            <p>Cómo Cuidamos Tu Privacidad</p>
+            <p>Accesibilidad</p>
+            <p>Defensa del Consumidor</p>
+          </div>
+        </div>
+        <div class="footer-info">
+          <p>© 2024 Dalos. Todos los derechos reservados.</p>
+          <p>La billetera virtual Dalos te permite gestionar tus finanzas de manera rápida y segura. Abre tu cuenta en minutos y disfruta de todos nuestros servicios.</p>
+          <p>Para más información, visita nuestra <a href="#">página de contacto</a> o envíanos un correo a <a href="mailto:ayuda@dalos.com">ayuda@dalos.com</a>.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    window.addEventListener('scroll', function() {
+        var imageContainer = document.querySelector('.image-container');
+        var scrollPosition = window.scrollY; // Obtiene la posición de desplazamiento
+        var windowHeight = window.innerHeight; // Altura de la ventana del navegador
+
+        if (scrollPosition > windowHeight * 0.5) {
+            // Si se ha desplazado más de la mitad de la altura de la ventana, aplica la clase faded
+            imageContainer.classList.add('faded');
+        } else {
+            // De lo contrario, elimina la clase faded
+            imageContainer.classList.remove('faded');
+        }
+    });
+
+    window.addEventListener('scroll', function() {
+        var overlayText = document.querySelector('.overlay-text');
+        var scrollPosition = window.scrollY;
+        var windowHeight = window.innerHeight;
+        var elementTop = overlayText.getBoundingClientRect().top;
+        var fadeInPoint = 150;
+
+        if (elementTop < windowHeight - fadeInPoint) {
+            overlayText.classList.add('visible');
+        } else {
+            overlayText.classList.remove('visible');
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalos | Principal</title>
+    <link rel="icon" href="{% static 'Dalos_app/img/logo.png' %}" type="image/jpg"> <!-- Agregamos el logo como icono de la página -->
+    <link rel="stylesheet" href='{% static "Dalos_app/css/principal.css" %}'>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo-container">
+                <a href="{% url 'index' %}"><img src='{% static "Dalos_app/img/logo.png" %}' alt="Logo" class="logo"></a>
+            </div>
+            <ul>
+                <li><a href="{% url 'principal' %}">Principal</a></li>
+                <li><a href="#">Ayuda y seguridad</a></li>
+                <li><a href="/Dalos/nosotros/">Sobre Dalos</a></li>
+                <li><a href="{% url 'logout' %}" class="logout-btn">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Transferencia de Fondos</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="logout-btn"> Realizar Transferencia</button>
+        <a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DALOS - Iniciar Sesión</title>
+  <link rel="stylesheet" href="{% static 'Dalos_app/css/styles.css' %}">
+  <!-- Agregamos el logo en la zona del título -->
+  <link rel="icon" href="{% static 'Dalos_app/img/logo.png' %}" type="image/jpg"> <!-- Agregamos el logo como icono de la página -->
+</head>
+<body>
+  <!-- Capa de carga -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+  </div>  
+
+  <!-- Contenido de la página -->
+  <div class="login-container" id="login-page">
+    <div class="logo-container">
+      <div class="logo" onclick="animateLogo()">
+        <img src='{% static "Dalos_app/img/logo.png" %}' alt="Logo">
+      </div>
+    </div>
+    <h1 class="title-highlight">DALOS</h1> <!-- Movemos el nombre "DALOS" arriba del logo -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button>Iniciar sesión</button>
+    </form>
+
+<div class="signup-option">
+    <p>¿No tienes cuenta? <a href="{% url 'register' %}">Crear cuenta</a>  <!-- Correcto -->
+    
+</div>
+
+    </div>
+  </div>
+
+</body>
+</html>
