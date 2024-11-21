@@ -230,7 +230,7 @@ main.tarjeta {
 .actions-grid {
     display: flex;
     gap: 1em;
-    width: 100%;
+    width: 90%;
 }
 
 .action-btn {

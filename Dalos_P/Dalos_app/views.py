@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 from django.db import connection
+from .models import UsuarioNuevo
 
 from . import forms, models
-from .forms import CustomLoginForm
+from .forms import CustomLoginForm, TransferenciaForm
 
 
 def principal(request):
@@ -32,12 +33,12 @@ def login_view(request):
             cursor.execute(query, (username, password))
 
             user = cursor.fetchone()  # Cambiado a fetchone() para obtener solo un usuario
-
+            
+            
             if user:
                 print(user)
-                # Almacenar solo el ID y el nombre de usuario en la sesión
-                request.session['user_id'] = user[2]  # Suponiendo que el ID de usuario está en el índice 0
-                request.session['nombre_usuario'] = user[5]  # Suponiendo que el nombre de usuario está en el índice 5
+                request.session['user_id'] = user[2]  
+                request.session['nombre_usuario'] = user[5]  
                 return redirect('principal')
             else:
                 messages.error(request, "Nombre de usuario o contraseña incorrectos.")
@@ -62,14 +63,13 @@ def register(request):
     
     return render(request, "Dalos_app/register.html", {'form': form})
 
-
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 def bdd(request):
     cursor = connection.cursor()
-    query = "SELECT nombre, apellido, nombre_usuario, contraseña, monto FROM dalos_app_usuarionuevo"
+    query = "SELECT nombre, apellido, nombre_usuario, contraseña, monto FROM dalos_app_usuarionuevo ORDER BY monto DESC"
     cursor.execute(query)
 
     html = """
@@ -114,21 +114,17 @@ def bdd(request):
     return HttpResponse(html)
 
 def principal(request):
-    # Verifica si el usuario está autenticado
     if 'user_id' in request.session:
         user_id = request.session['user_id']
         
-        # Realiza una consulta SQL para obtener los datos del usuario
         with connection.cursor() as cursor:
             query = "SELECT nombre, apellido, nombre_usuario, monto FROM dalos_app_usuarionuevo WHERE dni = %s"
             cursor.execute(query, [user_id])
-            usuario = cursor.fetchone()  # Obtiene el primer resultado
+            usuario = cursor.fetchone()
 
         if usuario:
-            # Descompón la tupla en variables
             nombre, apellido, nombre_usuario, monto = usuario
             
-            # Pasa los datos del usuario al contexto
             ctx = {
                 'nombre': nombre,
                 'apellido': apellido,
@@ -137,56 +133,58 @@ def principal(request):
             }
             return render(request, 'Dalos_app/principal.html', ctx)
         else:
-            # Si no se encuentra el usuario, redirigir a la página de inicio de sesión o mostrar un error
             return redirect('login')
     else:
-        # Si no hay usuario en la sesión, redirigir a la página de inicio de sesión
         return redirect('login')
 
-def transferencia(request):
-    print(f"Usuario autenticado: {request.user.is_authenticated}")
-    print(f"Nombre de usuario: {request.user.username if request.user.is_authenticated else 'No autenticado'}")
+def transferencia_view(request):
+    if 'user_id' not in request.session:
+        return redirect('login')
+    
+    remitente_dni = request.session['user_id']
+
+    # Obtener el saldo del remitente
+    remitente = UsuarioNuevo.objects.get(dni=remitente_dni)
+    saldo_remitente = remitente.monto
+
     if request.method == 'POST':
-        form = forms.TransferenciaForm(request.POST)
+        form = TransferenciaForm(request.POST)
         if form.is_valid():
+            destinatario_nombre = form.cleaned_data['destinatario']
             monto = form.cleaned_data['monto']
-            destinatario_nombre_usuario = form.cleaned_data['destinatario']
-            remitente = request.user
-            remitente = request.user
-            print(f"Nombre de usuario del remitente: {remitente.username}")
 
-            # Verificar que el remitente tenga suficiente saldo
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT monto FROM dalos_app_usuarionuevo WHERE nombre_usuario = %s", [remitente.username])
-                saldo_remitente = cursor.fetchone()
-                print(f"Saldo del remitente: {saldo_remitente[0] if saldo_remitente else 'No encontrado'}")
+            # Obtener el DNI del destinatario
+            try:
+                destinatario = UsuarioNuevo.objects.get(nombre_usuario=destinatario_nombre)
+                destinatario_dni = destinatario.dni
+            except UsuarioNuevo.DoesNotExist:
+                form.add_error('destinatario', 'El usuario destinatario no existe.')
+                return render(request, 'Dalos_app/transferencia.html', {'form': form})
 
-                if saldo_remitente is None or saldo_remitente[0] < monto:
-                    messages.error(request, "No tienes saldo suficiente para realizar esta transferencia.")
-                    return redirect('transferencia')
+            if saldo_remitente >= monto:
+                # Actualizaciòn de Saldos:
+                remitente.monto -= monto
+                destinatario.monto += monto
+                remitente.save()
+                destinatario.save()
 
-                # Obtener el destinatario
-                cursor.execute("SELECT id, monto FROM dalos_app_usuarionuevo WHERE nombre_usuario = %s", [destinatario_nombre_usuario])
-                destinatario = cursor.fetchone()
+                with connection.cursor() as cursor:
+                    cursor.execute("INSERT INTO Transferencia (remitente_dni, destinatario_dni, monto) VALUES (%s, %s, %s)",
+                                   [remitente_dni, destinatario_dni, monto])
 
-                if destinatario is None:
-                    messages.error(request, "El alias introducido no se encontró.")
-                    return redirect('transferencia')
-
-                nuevo_saldo_remitente = saldo_remitente[0] - monto
-                nuevo_saldo_destinatario = destinatario[1] + monto
-
-                # Actualizar los saldos en la base de datos
-                actu_query = "UPDATE dalos_app_usuarionuevo SET monto = %s WHERE nombre_usuario = %s"
-                cursor.execute(actu_query, (nuevo_saldo_remitente, remitente.username))                    
-
-                actu_query2 = "UPDATE dalos_app_usuarionuevo SET monto = %s WHERE id = %s"
-                cursor.execute(actu_query2, (nuevo_saldo_destinatario, destinatario[0]))
-
-                messages.success(request, f"Transferencia de ${monto} realizada con éxito a {destinatario_nombre_usuario}.")
-                return redirect('principal')  # Redirigir a la página principal u otra página deseada
-
+                return redirect('transferencia_exitosa')
+            else:
+                form.add_error(None, 'Saldo insuficiente')
     else:
-        form = forms.TransferenciaForm()
+        form = TransferenciaForm()
 
     return render(request, 'Dalos_app/transferencia.html', {'form': form})
+
+def transferencia_exitosa(request):
+    return render(request, 'Dalos_app/transferencia_exitosa.html')
+
+def ingresar(request):
+    return render(request, 'Dalos_app/ingresar.html')
+
+def sacar(request):
+    return render(request, 'Dalos_app/sacar.html')

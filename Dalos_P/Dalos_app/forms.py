@@ -1,10 +1,8 @@
-from django.forms import *
-from .models import *
-from django.contrib.auth.forms import AuthenticationForm
 from django import forms
+from .models import UsuarioNuevo
 
 
-class UsuarioForm(ModelForm):
+class UsuarioForm(forms.ModelForm):
     class Meta:
         model = UsuarioNuevo
         fields = [

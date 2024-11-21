@@ -37,20 +37,28 @@
                 </div>
                 <div class="balance-info">
                     <!-- Mostrar el monto del usuario aquí -->
-                    <span class="balance">${{ monto|floatformat:2 }}</span>
+                    <span class="balance">${{ monto|floatformat:2 }} DaloCoins</span>
                     <button class="refresh-btn">
                         <img src='{% static "Dalos_app/img/logo.png" %}' alt="Refresh">
                     </button>
                 </div>
             </div>
+
             <div class="actions-grid">
                 <button class="action-btn add-funds">
-                    <img src='{% static "Dalos_app/img/logo.png" %}' alt="Add Funds">
-                    <span>Ingresar</span>
+                    <a href="{% url 'ingresar' %}">
+                        <img src='{% static "Dalos_app/img/logo.png" %}' alt="Add Funds">
+                        <span>Ingresar</span>
+                    </a>
                 </button>
+
                 <button class="action-btn withdraw-funds">
-                    <img src='{% static "Dalos_app/img/logo.png" %}' alt="Withdraw Funds">
-                    <span>Retirar</span>
+                    <a href="{% url 'sacar' %}">
+                        <img src='{% static "Dalos_app/img/logo.png" %}' alt="Withdraw Funds">
+                        <span>Retirar</span>
+                    </a>
+                </button>
+
                 <button class="action-btn transfer-funds">
                     <a href="{% url 'transferencia' %}">
                         <img src='{% static "Dalos_app/img/logo.png" %}' alt="Transfer Funds">
@@ -58,6 +66,7 @@
                     </a>
                 </button>
             </div>
+            
         </main>
 
         <div class="header-container">

@@ -23,23 +23,12 @@
         </div>
     </nav>
 
-    <h1>Realizar Transferencia</h1>
+    <h1>Transferencia realizada con exito!</h1>
     
-    {% if form.errors %}
-        <ul>
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-        <a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a>
+    <form>
+        <p><a href="{% url 'transferencia' %}" class="logout-btn">Realizar otra transferencia</a></p>
+        <br>
+        <p><a href="{% url 'principal' %}" class="cancel-transfer">Volver al inicio</a></p>
     </form>
 </body>
 </html>

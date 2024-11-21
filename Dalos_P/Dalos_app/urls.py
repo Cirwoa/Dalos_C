@@ -15,5 +15,8 @@ urlpatterns = [
     path('bdd/', views.bdd, name='bdd'),
     
     path('principal/', views.principal, name='principal'),
-    path('transferencia/', views.transferencia, name='transferencia')
+    path('transferencia/', views.transferencia_view, name='transferencia'),
+    path('transferencia_exitosa/', views.transferencia_exitosa, name='transferencia_exitosa'),
+    path('ingresar/', views.ingresar, name='ingresar'),
+    path('sacar/', views.sacar, name='sacar')
 ]

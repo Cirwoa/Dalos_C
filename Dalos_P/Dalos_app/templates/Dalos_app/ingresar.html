@@ -15,7 +15,7 @@
                 <a href="{% url 'index' %}"><img src='{% static "Dalos_app/img/logo.png" %}' alt="Logo" class="logo"></a>
             </div>
             <ul>
-                <li><a href="{% url 'principal' %}">Principal</a></li>
+                <li><a href="#">Funcionalidades</a></li>
                 <li><a href="#">Ayuda y seguridad</a></li>
                 <li><a href="/Dalos/nosotros/">Sobre Dalos</a></li>
                 <li><a href="{% url 'logout' %}" class="logout-btn">Cerrar sesión</a></li>
@@ -23,23 +23,5 @@
         </div>
     </nav>
 
-    <h1>Realizar Transferencia</h1>
-    
-    {% if form.errors %}
-        <ul>
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-        <a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a>
-    </form>
-</body>
-</html>
+    Hola mundo <br>
+    <a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a>

@@ -27,6 +27,7 @@ header {
     align-items: center;
     justify-content: space-between; /* Distribuye los elementos a lo largo del header */
     font-size: 1.2rem; /* Tamaño de fuente general */
+    backdrop-filter: blur(10px);
 }
 
 /* Estilos para el título dentro del header */
