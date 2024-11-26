@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dalos_pro
 -- ------------------------------------------------------
--- Server version	8.0.40
+-- Server version	8.0.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `auth_group`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_group` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -76,9 +76,9 @@ DROP TABLE IF EXISTS `auth_permission`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_permission` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content_type_id` int NOT NULL,
-  `codename` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `codename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
@@ -104,13 +104,13 @@ DROP TABLE IF EXISTS `auth_user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `password` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `last_login` datetime(6) DEFAULT NULL,
   `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `first_name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `last_name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(254) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `dalos_app_usuarionuevo` (
 
 LOCK TABLES `dalos_app_usuarionuevo` WRITE;
 /*!40000 ALTER TABLE `dalos_app_usuarionuevo` DISABLE KEYS */;
-INSERT INTO `dalos_app_usuarionuevo` VALUES ('ciro','chan','12345678','1994-03-12','jh@gmail.com','ciro','123',1000.00),('edu','bardo','1263871','2000-12-12','lulu@gmail.com','edu','800',1000.00),('cirow','chan','45661920','2000-12-12','wuwuwu@gmail.com','Cirow','123',1000.00),('rocio','baston','5986758','2000-12-12','rochio@hotmail.com','chio1','567',1000.00),('gonx','lol','99999988','2000-01-09','locotron@gmail.com','gonx','456',1000.00);
+INSERT INTO `dalos_app_usuarionuevo` VALUES ('ciro','chan','12345678','1994-03-12','jh@gmail.com','ciro','123',1000.00),('edu','bardo','1263871','2000-12-12','lulu@gmail.com','edu','800',1300.00),('papu','landia','23456953','2024-11-06','papupro@gamail.com','papupro','papulandia',1000.00),('exen','nuñez','23456u','2008-04-23','exec@gmail.com','exe','123',1000.00),('maria jose','perez','29473929','1973-03-03','w@gmail.com','maria','123',1000.00),('Candelaria','Molas y Molas','30971089','1984-07-03','cane_molas@gmai.com','Cande','Cande123',1000.00),('Anto','M','354','1659-12-12','anto@hotmail.com','antocba','1234',1000.00),('Marcos','Adduino','42091169','1550-01-25','marcos.adduino@gmail.com','MATEO','1234',1000.00),('cirow','chan','45661920','2000-12-12','wuwuwu@gmail.com','Cirow','123',1000.00),('santi','ger','46374888','2024-11-22','hola@gmail.com','santiger.dalo','1234',1000.00),('Micol','Rovelli','47352788','2007-01-03','mrovelli@gmail.com','Micol','1234',1000.00),('gon','alarcon','47364737','2000-01-01','gon@gmail.com','gonza','1234',700.00),('morena','agostina','49384457','2009-02-18','morealvarez313@gmail.com','morealvareez_','1234',1000.00),('gabriel','caro','49557084','2007-08-20','gabymati711@gmail.com','Gabi','12345678',1000.00),('zoe','scriffignano','50505005','2024-11-23','cualquiercosa@hotmail.com','zoe','hola',1000.00),('nacho','ceballos','506543789','2011-06-08','hola@gmail.com','nacho','ciro ignacio',1000.00),('rocio','baston','5986758','2000-12-12','rochio@hotmail.com','chio1','567',1000.00),('Maxi','Osler','63456344','2007-08-08','hola@gmail.com','Max','12345',1000.00),('Bana','Nirou','99777555','1981-06-18','pupu@hotmail.com','Banatroll','BanaGoat777',1000.00),('gonx','lol','99999988','2000-01-09','locotron@gmail.com','gonx','456',1000.00);
 /*!40000 ALTER TABLE `dalos_app_usuarionuevo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,10 +248,10 @@ DROP TABLE IF EXISTS `django_admin_log`;
 CREATE TABLE `django_admin_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext COLLATE utf8mb4_general_ci,
-  `object_repr` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `object_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `object_repr` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `action_flag` smallint unsigned NOT NULL,
-  `change_message` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `change_message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content_type_id` int DEFAULT NULL,
   `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -282,8 +282,8 @@ DROP TABLE IF EXISTS `django_content_type`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_content_type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `app_label` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `model` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `app_label` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -308,8 +308,8 @@ DROP TABLE IF EXISTS `django_migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_migrations` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `app` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `app` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -333,8 +333,8 @@ DROP TABLE IF EXISTS `django_session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_session` (
-  `session_key` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `session_data` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `session_key` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `session_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `expire_date` datetime(6) NOT NULL,
   PRIMARY KEY (`session_key`),
   KEY `django_session_expire_date_a5c62663` (`expire_date`)
@@ -347,8 +347,39 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('97hrc4vt2msr5170a5ne5nxiyholzmon','eyJ1c2VyX2lkIjoiMTIzNDU2NzgiLCJub21icmVfdXN1YXJpbyI6ImNpcm8ifQ:1tBWxe:AAkIChEvuqJzaHHMTWJhGY-KRR7qY8gKcnftfyjd_Mg','2024-11-14 11:20:26.820306'),('a8k0lf78415gpaaprseofdfeebc1sn24','.eJxVjMsOwiAUBf-FtSG8ygWX7vsN5PKSqoGktCvjv0uTLnR7Zua8icN9K27vaXVLJFfCyeV38xieqR4gPrDeGw2tbuvi6aHQk3Y6t5het9P9OyjYy6iNYQDcMo0StPBZWoPAcp54QJZsUmCHoqS10yCZKy8AUGQto0cVFfl8AbL5NwE:1t9I6f:Sxe5bxmR0ldiWRrSIfGhm6taAz1w-uFCh1v-n8tTXss','2024-11-08 07:04:29.454834'),('fwlwtxq11maa272os0qk04jbzdqh1f0u','.eJxVjMsOwiAURP-FtSGhCLe4dO83kPtSqoYmpV0Z_11JutDdZM6ZeZmM21ry1nTJk5iTGczhtyPkh9YO5I71Nlue67pMZLtid9rsZRZ9nnf376BgK32d4Aqek0sQdAiRPDv3jYTk6ciKHkE0cAyjaHSOkb0I0QgKgAnN-wP3ZTj7:1tAkN0:uPfPSaHKcJQnVZG_2mrjVJrVTk7uMhClfMtOCRwh6Zw','2024-11-12 07:27:22.277794');
+INSERT INTO `django_session` VALUES ('3vqvtsyhn11gncsyuo8umney7il0fzzl','eyJ1c2VyX2lkIjoiMTIzNDU2NzgiLCJub21icmVfdXN1YXJpbyI6ImNpcm8ifQ:1tDUhv:qJU9B0KA_BeTq6_HOy-DtuAP3hcMHR4LCauKS_wUAMU','2024-11-19 21:20:19.299554'),('58wf2a4115f6ht3934wbjmvgn5bcx2b1','eyJ1c2VyX2lkIjoiNDIwOTExNjkiLCJub21icmVfdXN1YXJpbyI6Ik1BVEVPIn0:1tBcip:WWvyZDGBFYaLHIEg18qbMO9TDCriKb7-1BWVVydpIHo','2024-11-14 17:29:31.538778'),('75khm69sq0qb0ykzyhee6e67kxgarr01','eyJ1c2VyX2lkIjoiMTI2Mzg3MSIsIm5vbWJyZV91c3VhcmlvIjoiZWR1In0:1tG0W5:MC_o9tA-BZ1vv8mcs4SR1pKLO_KRHDwfHIe8bvdMDQ8','2024-11-26 19:42:29.142670'),('97hrc4vt2msr5170a5ne5nxiyholzmon','eyJ1c2VyX2lkIjoiMTIzNDU2NzgiLCJub21icmVfdXN1YXJpbyI6ImNpcm8ifQ:1tBWxe:AAkIChEvuqJzaHHMTWJhGY-KRR7qY8gKcnftfyjd_Mg','2024-11-14 11:20:26.820306'),('a8k0lf78415gpaaprseofdfeebc1sn24','.eJxVjMsOwiAUBf-FtSG8ygWX7vsN5PKSqoGktCvjv0uTLnR7Zua8icN9K27vaXVLJFfCyeV38xieqR4gPrDeGw2tbuvi6aHQk3Y6t5het9P9OyjYy6iNYQDcMo0StPBZWoPAcp54QJZsUmCHoqS10yCZKy8AUGQto0cVFfl8AbL5NwE:1t9I6f:Sxe5bxmR0ldiWRrSIfGhm6taAz1w-uFCh1v-n8tTXss','2024-11-08 07:04:29.454834'),('bubu3kz2ritwfeb03512qkr70m1sio1x','eyJ1c2VyX2lkIjoiMTIzNDU2NzgiLCJub21icmVfdXN1YXJpbyI6ImNpcm8ifQ:1tDUYO:xvUr-D-OPcJ0rvshIjIa1uD6ALqxRjTfH3HrYQ0aEzw','2024-11-19 21:10:28.513114'),('cpwqbldzgw4sw3n302pdripxqq1i8aig','eyJ1c2VyX2lkIjoiMTIzNDU2NzgiLCJub21icmVfdXN1YXJpbyI6ImNpcm8ifQ:1tBdmo:p12Ulq4Mt7aNI93AMyEnj1VQVsarTLeZtlTQwPmTKSE','2024-11-14 18:37:42.057994'),('fwlwtxq11maa272os0qk04jbzdqh1f0u','.eJxVjMsOwiAURP-FtSGhCLe4dO83kPtSqoYmpV0Z_11JutDdZM6ZeZmM21ry1nTJk5iTGczhtyPkh9YO5I71Nlue67pMZLtid9rsZRZ9nnf376BgK32d4Aqek0sQdAiRPDv3jYTk6ciKHkE0cAyjaHSOkb0I0QgKgAnN-wP3ZTj7:1tAkN0:uPfPSaHKcJQnVZG_2mrjVJrVTk7uMhClfMtOCRwh6Zw','2024-11-12 07:27:22.277794'),('jp8kowy3cq5i8d2d0is3wuq1uzcydspg','eyJ1c2VyX2lkIjoiNDczNjQ3MzciLCJub21icmVfdXN1YXJpbyI6ImdvbnphIn0:1tDrYj:IukHUGH_19AVGCtfwV4tS9qBteAlPX5UXiFPDFCLIQc','2024-11-20 21:44:21.503298'),('q2yylrybyy2mfcfxbg35odrt01gyplh2','eyJ1c2VyX2lkIjoiMTI2Mzg3MSIsIm5vbWJyZV91c3VhcmlvIjoiZWR1In0:1tEFc9:BYehx1-OcOZeIt8Duk2Qso1iYi5wPFaq3f2nUnCehQI','2024-11-21 23:25:29.069639'),('sxwv0xexx7iujfoiohfadbp0tck4058d','eyJ1c2VyX2lkIjoiNDczNjQ3MzciLCJub21icmVfdXN1YXJpbyI6ImdvbnphIn0:1tDq8C:orDLmq8BZfoY7F_JugeUTwMwG-TwPE-co9kN6Damt2M','2024-11-20 20:12:52.916797');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transferencia`
+--
+
+DROP TABLE IF EXISTS `transferencia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transferencia` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `remitente_dni` varchar(10) NOT NULL,
+  `destinatario_dni` varchar(10) NOT NULL,
+  `monto` decimal(10,2) NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `remitente_dni` (`remitente_dni`),
+  KEY `destinatario_dni` (`destinatario_dni`),
+  CONSTRAINT `transferencia_ibfk_1` FOREIGN KEY (`remitente_dni`) REFERENCES `dalos_app_usuarionuevo` (`dni`),
+  CONSTRAINT `transferencia_ibfk_2` FOREIGN KEY (`destinatario_dni`) REFERENCES `dalos_app_usuarionuevo` (`dni`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transferencia`
+--
+
+LOCK TABLES `transferencia` WRITE;
+/*!40000 ALTER TABLE `transferencia` DISABLE KEYS */;
+INSERT INTO `transferencia` VALUES (1,'47364737','12345678',1000.00,'2024-11-20 20:31:29'),(2,'12345678','47364737',2000.00,'2024-11-20 20:33:05'),(3,'47364737','12345678',1000.00,'2024-11-20 20:38:38'),(4,'47364737','1263871',1000.00,'2024-11-20 20:41:47'),(5,'1263871','47364737',2000.00,'2024-11-20 20:43:20'),(6,'47364737','1263871',3000.00,'2024-11-20 20:44:27'),(7,'12345678','47364737',100.00,'2024-11-21 21:55:57'),(8,'12345678','47364737',100.00,'2024-11-21 21:56:13'),(9,'12345678','47364737',100.00,'2024-11-21 22:21:06'),(10,'12345678','47364737',100.00,'2024-11-21 22:21:22'),(11,'12345678','47364737',100.00,'2024-11-21 22:24:54'),(12,'1263871','47364737',100.00,'2024-11-21 22:25:38'),(13,'1263871','47364737',100.00,'2024-11-21 22:29:03'),(14,'1263871','47364737',800.00,'2024-11-21 22:29:44'),(15,'1263871','12345678',500.00,'2024-11-26 18:42:37'),(16,'1263871','47364737',10.00,'2024-11-26 18:47:05'),(17,'1263871','47364737',10.00,'2024-11-26 18:57:00'),(18,'1263871','47364737',100.00,'2024-11-26 19:03:59'),(19,'1263871','47364737',30.00,'2024-11-26 19:04:20'),(20,'1263871','47364737',50.00,'2024-11-26 19:06:18'),(21,'1263871','47364737',50.00,'2024-11-26 19:06:58'),(22,'1263871','47364737',50.00,'2024-11-26 19:07:33'),(23,'1263871','47364737',50.00,'2024-11-26 19:14:35');
+/*!40000 ALTER TABLE `transferencia` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -360,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-14  7:24:52
+-- Dump completed on 2024-11-26 17:42:02

@@ -32,7 +32,7 @@ def login_view(request):
             query = "SELECT * FROM dalos_app_usuarionuevo WHERE nombre_usuario=%s AND contraseña=%s"
             cursor.execute(query, (username, password))
 
-            user = cursor.fetchone()  # Cambiado a fetchone() para obtener solo un usuario
+            user = cursor.fetchone()
             
             
             if user:
@@ -43,7 +43,7 @@ def login_view(request):
             else:
                 messages.error(request, "Nombre de usuario o contraseña incorrectos.")
         else:
-            print(form.errors)  # Imprime los errores de validación
+            print(form.errors)
             messages.error(request, "Formulario no válido.")
     else:
         form = CustomLoginForm()
@@ -137,13 +137,15 @@ def principal(request):
     else:
         return redirect('login')
 
+
+
 def transferencia_view(request):
     if 'user_id' not in request.session:
         return redirect('login')
     
     remitente_dni = request.session['user_id']
 
-    # Obtener el saldo del remitente
+    # Saldo del que envia
     remitente = UsuarioNuevo.objects.get(dni=remitente_dni)
     saldo_remitente = remitente.monto
 
@@ -153,7 +155,7 @@ def transferencia_view(request):
             destinatario_nombre = form.cleaned_data['destinatario']
             monto = form.cleaned_data['monto']
 
-            # Obtener el DNI del destinatario
+            # DNI del que recibirà
             try:
                 destinatario = UsuarioNuevo.objects.get(nombre_usuario=destinatario_nombre)
                 destinatario_dni = destinatario.dni
@@ -179,6 +181,11 @@ def transferencia_view(request):
         form = TransferenciaForm()
 
     return render(request, 'Dalos_app/transferencia.html', {'form': form})
+    def monto(request):
+      forms.TransferenciaForm.clean_monto
+      return render(request, 'Dalos_app/transferencia.html', {'form': form})
+     
+  
 
 def transferencia_exitosa(request):
     return render(request, 'Dalos_app/transferencia_exitosa.html')

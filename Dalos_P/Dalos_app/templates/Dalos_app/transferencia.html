@@ -38,8 +38,16 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Enviar</button>
-        <a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a>
+
+        <p><button class="logout-btn" type="submit">Enviar</button></p>
+        <p><a href="{% url 'principal' %}" class="cancel-transfer">Cancelar y volver atrás</a></p>
     </form>
+    
+    <script>
+        document.querySelector("form").onsubmit = function() {
+            document.querySelector("button[type='submit']").disabled = true;
+        };
+    </script>
+
 </body>
 </html>
