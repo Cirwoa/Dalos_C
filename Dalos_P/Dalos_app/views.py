@@ -165,8 +165,8 @@ def transferencia_view(request):
 
             if saldo_remitente >= monto:
                 # Actualizaciòn de Saldos:
-                remitente.monto -= monto
-                destinatario.monto += monto
+                remitente.monto -= monto / 1
+                destinatario.monto += monto / 1
                 remitente.save()
                 destinatario.save()
 
